@@ -1,37 +1,39 @@
-import { Product, productsManage } from '../../models/productsModel'
+import { Product, productsManage } from '../models/productsModel';
 
-const pManege = new productsManage()
+const pManage = new productsManage();
 
-describe('Test Product model', () => {
-	it('The products class has an index function', () => {
-		expect(pManege.indexProducts).toBeDefined()
-	})
-
+describe('Test Products Model', () => {
+	it('should an index method', () => {
+		expect(pManage.indexProducts).toBeDefined();
+	});
 	it('should have a create method', () => {
-		expect(pManege.createProduct).toBeDefined()
-	})
+		expect(pManage.createProduct).toBeDefined();
+	});
+	it('should have a delete method', () => {
+		expect(pManage.productDelete).toBeDefined();
+	});
 
 	it('The index function return array', async () => {
-		const result = await pManege.indexProducts()
-		expect(result).toEqual([])
-	})
+		const result = await pManage.indexProducts();
+		expect(result).toEqual([]);
+	});
 
 	it('create method should add a product', async () => {
-		const result = await pManege.createProduct({
+		const result = await pManage.createProduct({
 			name: 'Porodo mechanical keyboard',
 			price: 17,
 			category: 'Computer Parts',
-		})
+		});
 		expect(result).toEqual({
 			id: 1,
 			name: 'Porodo mechanical keyboard',
 			price: 17,
 			category: 'Computer Parts',
-		})
-	})
+		});
+	});
 
 	it('index method should return a list of products', async () => {
-		const result = await pManege.indexProducts()
+		const result = await pManage.indexProducts();
 		expect(result).toEqual([
 			{
 				id: 1,
@@ -39,16 +41,16 @@ describe('Test Product model', () => {
 				price: 17,
 				category: 'Computer Parts',
 			},
-		])
-	})
+		]);
+	});
 
 	it('show method should return the correct product', async () => {
-		const result = await pManege.showProduct('1')
+		const result = await pManage.showProduct('1');
 		expect(result).toEqual({
 			id: 1,
 			name: 'Porodo mechanical keyboard',
 			price: 17,
 			category: 'Computer Parts',
-		})
-	})
-})
+		});
+	});
+});

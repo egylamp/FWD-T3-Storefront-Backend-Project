@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
-import productsRoute from './routes/productsRoutes';
-import usersRoutes from './routes/usersRoutes';
-import ordersRoutes from './routes/ordersRoutes';
+import productsRoute from './handlers/productsRoutes';
+import usersRoutes from './handlers/usersRoutes';
+import ordersRoutes from './handlers/ordersRoutes';
 
 const app: express.Application = express()
 const address: string = "127.0.0.1:3000"
