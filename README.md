@@ -36,22 +36,24 @@ TOKEN_SECRET=[token_secret_word]
 ### 4. Create database.json file and add the below code to it according to the databse server configration
 
 {
-"dev":{
-"driver":"pg",
-"host" : "localhost",
-"database" : "[dev_database_name]",
-"user" : "[database_user]",
-"password" : "[database_user_password]",
-"port": "5432"
-},
-"test":{
-"driver":"pg",
-"host" : "localhost",
-"database" : "[test_database_name]",
-"user" : "[database_user]",
-"password" : "[database_user_password]",
-"port": "5432"
-}
+
+    "dev":{
+        "driver":"pg",
+        "host" : "localhost",
+        "database" : "[dev_database_name]",
+        "user" : "[database_user]",
+        "password" : "[database_user_password]",
+        "port": "5432"
+    },
+
+    "test":{
+        "driver":"pg",
+        "host" : "localhost",
+        "database" : "[test_database_name]",
+        "user" : "[database_user]",
+        "password" : "[database_user_password]",
+        "port": "5432"
+    }
 
 }
 
@@ -60,3 +62,7 @@ TOKEN_SECRET=[token_secret_word]
 ~ yarn watch
 
 ~ yarn test
+
+### 1. Plan to Meet Requirements
+
+In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API.
