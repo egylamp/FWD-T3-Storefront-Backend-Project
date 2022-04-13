@@ -1,19 +1,21 @@
 import express, { Request, Response } from 'express'
 import bodyParser from 'body-parser'
-import booksRoute from './routes/booksRoute';
-import userRoutes from './routes/userRoutes';
+import productsRoute from './routes/productsRoutes';
+import usersRoutes from './routes/usersRoutes';
+import ordersRoutes from './routes/ordersRoutes';
 
 const app: express.Application = express()
 const address: string = "127.0.0.1:3000"
 
 app.use(bodyParser.json())
 
-app.get('/', function (req: Request, res: Response) {
+app.get('/store', function (req: Request, res: Response) {
     res.send('Welcome to MyStore!')
 })
 
-booksRoute(app);
-userRoutes(app);
+productsRoute(app);
+usersRoutes(app);
+ordersRoutes(app);
 
 app.listen(3000, function () {
     console.log(`starting app on: ${address}`)

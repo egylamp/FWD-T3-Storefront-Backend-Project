@@ -9,7 +9,7 @@ const {
     TESTDBNAME,
     ENV
 } = process.env;
-let dbconn = new Pool();
+let dbconn;
 if(ENV === 'dev'){
     dbconn = new Pool({
     host:DBHOST,
