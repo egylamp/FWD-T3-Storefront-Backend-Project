@@ -7,19 +7,34 @@ dotenv.config();
 const pManage = new productsManage();
 
 const index = async (_req: Request, res: Response) => {
-	const products = await pManage.indexProducts();
-	res.json(products);
+	try {
+		const products = await pManage.indexProducts();
+		res.json(products);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const show = async (req: Request, res: Response) => {
-	const product = await pManage.showProduct(req.params.id);
-	res.json(product);
+	try {
+		const product = await pManage.showProduct(req.params.id);
+		res.json(product);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
-const byCategoty = async (req: Request, res: Response) => {
-	const products = await pManage.productInCategory(req.params.category);
-	res.json(products);
-};
+//  const byCategoty = async (req: Request, res: Response) => {
+// 	try{
+//  	const products = await pManage.productInCategory(req.params.category);
+//  	res.json(products);
+// } catch(err){
+// 	res.status(400);
+// 	res.json(`${err}`);
+// }
+//  };
 
 const create = async (req: Request, res: Response) => {
 	try {
@@ -43,7 +58,7 @@ const create = async (req: Request, res: Response) => {
 		res.json(newProduct);
 	} catch (err) {
 		res.status(400);
-		res.json(err);
+		res.json(`${err}`);
 	}
 };
 
@@ -57,14 +72,19 @@ const destroy = async (req: Request, res: Response) => {
 		res.json('Access denied, invalid token');
 		return;
 	}
-	const user = await pManage.productDelete(req.params.id);
-	res.json(user);
+	try {
+		const user = await pManage.productDelete(req.params.id);
+		res.json(user);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const productsRoutes = (app: Application) => {
 	app.get('/products', index);
 	app.get('/products/:id', show);
-	app.get('/products/category/:category', byCategoty);
+	//app.get('/products/category/:category', byCategoty);
 	app.post('/products', create);
 	app.delete('/products/:id', destroy);
 };

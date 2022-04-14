@@ -25,7 +25,7 @@ export class ordersManage {
 
 	async showOrders(uid: string): Promise<Order[]> {
 		try {
-			const sql = "SELECT * FROM orders WHERE user_id=($1)";
+			const sql = 'SELECT * FROM orders WHERE user_id=($1)';
 
 			const connection = await dbconn.connect();
 

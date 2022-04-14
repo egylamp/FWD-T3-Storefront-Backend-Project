@@ -16,8 +16,13 @@ const index = async (_req: Request, res: Response) => {
 		res.json('Access denied, invalid token');
 		return;
 	}
-	const usersData = await users.indexUsers();
-	res.json(usersData);
+	try {
+		const usersData = await users.indexUsers();
+		res.json(usersData);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const show = async (req: Request, res: Response) => {
@@ -30,20 +35,25 @@ const show = async (req: Request, res: Response) => {
 		res.json('Access denied, invalid token');
 		return;
 	}
-	const user = await users.showUser(req.params.id);
-	res.json(user);
+	try {
+		const user = await users.showUser(req.params.id);
+		res.json(user);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const create = async (req: Request, res: Response) => {
-	try {
-		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
-		jwt.verify(token, process.env.TOKEN_SECRET);
-	} catch (err) {
-		res.status(401);
-		res.json('Access denied, invalid token');
-		return;
-	}
+	// try {
+	// 	const authorizedHeader = req.headers.authorization;
+	// 	const token = authorizedHeader.split(' ')[1];
+	// 	jwt.verify(token, process.env.TOKEN_SECRET);
+	// } catch (err) {
+	// 	res.status(401);
+	// 	res.json('Access denied, invalid token');
+	// 	return;
+	// }
 	const user: User = {
 		firstname: req.body.firstname,
 		lastname: req.body.lastname,
@@ -86,8 +96,13 @@ const destroy = async (req: Request, res: Response) => {
 		res.json('Access denied, invalid token');
 		return;
 	}
-	const user = await users.userDelete(req.params.id);
-	res.json(user);
+	try {
+		const user = await users.userDelete(req.params.id);
+		res.json(user);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const userRoutes = (app: Application) => {

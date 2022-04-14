@@ -16,8 +16,13 @@ const show = async (req: Request, res: Response) => {
 		res.json('Access denied, invalid token');
 		return;
 	}
-	const order = await OPManage.listOrderProducts(req.params.id);
-	res.json(order);
+	try {
+		const order = await OPManage.listOrderProducts(req.params.id);
+		res.json(order);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const create = async (req: Request, res: Response) => {
@@ -40,7 +45,7 @@ const create = async (req: Request, res: Response) => {
 		res.json(newProduct);
 	} catch (err) {
 		res.status(400);
-		res.json(err);
+		res.json(`${err}`);
 	}
 };
 
@@ -54,14 +59,19 @@ const destroy = async (req: Request, res: Response) => {
 		res.json('Access denied, invalid token');
 		return;
 	}
-	const user = await OPManage.orderProductDelete(req.params.oid, req.params.pid);
-	res.json(user);
+	try {
+		const user = await OPManage.orderProductDelete(req.params.oid, req.params.pid);
+		res.json(user);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
-const ordersRoutes = (app: Application) => {
+const ordersProductsRoutes = (app: Application) => {
 	app.get('/orders/:id/products', show);
-	app.post('/orders/:id/products', create);
+	app.post('/orders/:id/product', create);
 	app.delete('/orders/:oid/product/:pid', destroy);
 };
 
-export default ordersRoutes;
+export default ordersProductsRoutes;

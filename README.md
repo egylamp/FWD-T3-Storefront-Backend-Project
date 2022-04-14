@@ -59,9 +59,11 @@ TOKEN_SECRET=[token_secret_word]
 
 ## Run and test terminal commands
 
-~ yarn watch
+For creating database tables use: ~ db-migrate up 
 
-~ yarn test
+For running the server and call endpoints use: ~ yarn watch
+
+For unit testing use: ~ yarn test
 
 ### 5. Plan to Meet Requirements
 

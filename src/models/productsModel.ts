@@ -56,20 +56,20 @@ export class productsManage {
 		}
 	}
 
-	async productInCategory(category: string): Promise<Product[]> {
-		try {
-			const connection = await dbconn.connect();
-			const sql = 'SELECT * FROM products WHERE product_category LIKE ($1)';
+	// async productInCategory(category: string): Promise<Product[]> {
+	// 	try {
+	// 		const connection = await dbconn.connect();
+	// 		const sql = 'SELECT * FROM products WHERE product_category LIKE ($1)';
 
-			const result = await connection.query(sql, [category]);
+	// 		const result = await connection.query(sql, [category]);
 
-			connection.release();
+	// 		connection.release();
 
-			return result.rows;
-		} catch (err) {
-			throw new Error(`Could not get products in categorty ${category}. [${err}]`);
-		}
-	}
+	// 		return result.rows;
+	// 	} catch (err) {
+	// 		throw new Error(`Could not get products in categorty ${category}. [${err}]`);
+	// 	}
+	// }
 
 	async productDelete(id: string): Promise<Product> {
 		try {

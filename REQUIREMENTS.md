@@ -17,14 +17,14 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 - Index [token required] route: '/users' [GET]
 - Show [token required] route: '/users/:id' [GET]
-- Create N[token required] route: '/users' [POST]
+- Create route: '/users' [POST]
 
 #### Orders
 
-- Current Order by user (args: user id)[token required] route: '/orders/:uid' [GET]
+- Current Order by user (args: user id)[token required] route: '/orders/:user_id' [GET]
 - Create [token required] route: '/orders' [POST]
 - Show products in an order (args: order id) [token required] route: '/orders/:id/products' [GET]
-- Add product to active oder (args: order id) [token required] route: '/orders/:id/products' [POST]
+- Add product to active oder (args: order id) [token required] route: '/orders/:id/product' [POST]
 - Completed Orders by user (args: user id)[token required] route: '/orders/:uid/completed' [GET]
 
 ## Data Shapes

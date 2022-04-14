@@ -8,4 +8,8 @@ describe('Test users routes endpoints', () => {
 		const response = await request.get('/users');
 		expect(response.status).toBe(401);
 	});
+	it('Create user return token', async () => {
+		const response = await request.post('/users');
+		expect(response.status).toBe(200);
+	});
 });

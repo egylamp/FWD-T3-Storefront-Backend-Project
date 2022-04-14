@@ -21,8 +21,13 @@ const show = async (req: Request, res: Response) => {
 		res.json('Access denied, invalid token');
 		return;
 	}
-	const order = await oManage.showOrders(req.params.uid);
-	res.json(order);
+	try {
+		const order = await oManage.showOrders(req.params.uid);
+		res.json(order);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const complete = async (req: Request, res: Response) => {
@@ -35,8 +40,13 @@ const complete = async (req: Request, res: Response) => {
 		res.json('Access denied, invalid token');
 		return;
 	}
-	const order = await oManage.showCompleted(req.params.uid);
-	res.json(order);
+	try {
+		const order = await oManage.showCompleted(req.params.uid);
+		res.json(order);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const create = async (req: Request, res: Response) => {
@@ -52,14 +62,14 @@ const create = async (req: Request, res: Response) => {
 
 	try {
 		const order: Order = {
-			user_id: req.body.uid,
+			user_id: req.body.user_id,
 			status: 'active',
 		};
 		const newProduct = await oManage.createOrder(order);
 		res.json(newProduct);
 	} catch (err) {
 		res.status(400);
-		res.json(err);
+		res.json(`${err}`);
 	}
 };
 
@@ -73,8 +83,13 @@ const destroy = async (req: Request, res: Response) => {
 		res.json('Access denied, invalid token');
 		return;
 	}
-	const user = await oManage.orderDelete(req.params.id);
-	res.json(user);
+	try {
+		const user = await oManage.orderDelete(req.params.id);
+		res.json(user);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const ordersRoutes = (app: Application) => {
