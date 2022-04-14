@@ -33,33 +33,9 @@ BCRYPT_PASSWORD=[bcrypt_secret_password]
 SALT_ROUNDS=10
 TOKEN_SECRET=[token_secret_word]
 
-### 4. Create database.json file and add the below code to it according to the databse server configration
-
-{
-
-    "dev":{
-        "driver":"pg",
-        "host" : "localhost",
-        "database" : "[dev_database_name]",
-        "user" : "[database_user]",
-        "password" : "[database_user_password]",
-        "port": "5432"
-    },
-
-    "test":{
-        "driver":"pg",
-        "host" : "localhost",
-        "database" : "[test_database_name]",
-        "user" : "[database_user]",
-        "password" : "[database_user_password]",
-        "port": "5432"
-    }
-
-}
-
 ## Run and test terminal commands
 
-For creating database tables use: ~ db-migrate up 
+For creating database tables use: ~ db-migrate up
 
 For running the server and call endpoints use: ~ yarn watch
 
