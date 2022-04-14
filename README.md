@@ -23,15 +23,19 @@ Your application must make use of the following libraries:
 
 ### 3. Create .env and add the below variables to it according to the databse server configration
 
-DBHOST=localhost
-DBUSER=[database_user]
-DBPASS=[database_user_password]
-DBNAME=[dev_database_name]
-TESTDBNAME=[test_database_name]
+PG_HOST=127.0.0.1
+PG_USER=[database user]
+PG_PWD=[database user password]
+PG_DB=[postgres database name]
+PG_DB_TEST=[postgres test database name]
 ENV=dev
-BCRYPT_PASSWORD=[bcrypt_secret_password]
+BCRYPT_PASSWORD=[bcrypt secret password]
 SALT_ROUNDS=10
-TOKEN_SECRET=[token_secret_word]
+TOKEN_SECRET=[token secret word]
+
+### 5. Plan to Meet Requirements
+
+In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API.
 
 ## Run and test terminal commands
 
@@ -40,7 +44,3 @@ For creating database tables use: ~ db-migrate up
 For running the server and call endpoints use: ~ yarn watch
 
 For unit testing use: ~ yarn test
-
-### 5. Plan to Meet Requirements
-
-In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API.
