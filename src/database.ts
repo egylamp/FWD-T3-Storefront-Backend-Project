@@ -2,11 +2,11 @@ import dotenv from "dotenv";
 import { Pool } from "pg";
 dotenv.config();
 const {
-    DBHOST,
-    DBUSER,
-    DBPASS,
-    DBNAME,
-    TESTDBNAME,
+    PG_HOST,
+    PG_USER,
+    PG_PWD,
+    PG_DB,
+    PG_DB_TEST,
     ENV
 } = process.env;
 
@@ -14,18 +14,18 @@ const {
 let dbconn;
 if(ENV === 'dev'){
     dbconn = new Pool({
-    host:DBHOST,
-    database:DBNAME,
-    user:DBUSER,
-    password:DBPASS,
+    host:PG_HOST,
+    database:PG_DB,
+    user:PG_USER,
+    password:PG_PWD,
     });
 }
 if(ENV === 'test'){
     dbconn = new Pool({
-    host:DBHOST,
-    database:TESTDBNAME,
-    user:DBUSER,
-    password:DBPASS,
+    host:PG_HOST,
+    database:PG_DB_TEST,
+    user:PG_USER,
+    password:PG_PWD,
     });
 }
 
