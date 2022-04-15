@@ -8,23 +8,23 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Products
 
-- Index route: '/products' [GET]
-- Show route: '/products/:id' [GET]
-- Create [token required] route: '/products' [POST]
+- Index products route: '/products' [GET]
+- Show product (args: product id) route: '/products/:id' [GET]
+- Create product (json object is required send name, price, and category) route [token required]: '/products' [POST]
 - Products by category (args: product category) route: '/products/category/:category' [GET]
 
 #### Users
 
-- Index [token required] route: '/users' [GET]
-- Show [token required] route: '/users/:id' [GET]
-- Create route: '/users' [POST]
+- Index users [token required] route: '/users' [GET]
+- Show user (args: user id) route [token required]: '/users/:id' [GET]
+- Create user (json object is required send firstname, lastname, username and password) route: '/users' [POST]
 
 #### Orders
 
 - Current Order by user (args: user id)[token required] route: '/orders/:user_id' [GET]
-- Create [token required] route: '/orders' [POST]
+- Create order (json object is required send user_id) route [token required]: '/orders' [POST]
 - Show products in an order (args: order id) [token required] route: '/orders/:id/products' [GET]
-- Add product to active oder (args: order id) [token required] route: '/orders/:id/product' [POST]
+- Add product to active oder (args: order id) and (json object is required send order_id, product_id, and quantity) [token required] route: '/orders/:id/product' [POST]
 - Completed Orders by user (args: user id)[token required] route: '/orders/:uid/completed' [GET]
 
 ## Data Shapes
