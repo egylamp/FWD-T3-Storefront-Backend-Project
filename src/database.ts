@@ -10,6 +10,8 @@ const {
     ENV
 } = process.env;
 
+console.log(ENV);
+
 // connection handler has any type because we change from development database to test database in unit testing
 let dbconn;
 if(ENV === 'dev'){

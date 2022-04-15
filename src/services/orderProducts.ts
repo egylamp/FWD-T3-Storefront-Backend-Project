@@ -1,4 +1,4 @@
-import dbconn from '../database';
+import dbconn from "../database";
 
 export type OrderProduct = {
 	id?: number;
@@ -14,7 +14,7 @@ export class ordersProductsManage {
 	): Promise<OrderProduct> {
 		try {
 			const connection = await dbconn.connect();
-			const sql = 'SELECT * FROM orders WHERE id = ($1)';
+			const sql = "SELECT * FROM orders WHERE id = ($1)";
 			const resultOrder = await connection.query(sql, [order_id]);
 			connection.release();
 		} catch (err) {
@@ -22,7 +22,7 @@ export class ordersProductsManage {
 		}
 		try {
 			const connection = await dbconn.connect();
-			const sql = 'SELECT * FROM products WHERE id = ($1)';
+			const sql = "SELECT * FROM products WHERE id = ($1)";
 			const resultProduct = await connection.query(sql, [product_id]);
 			connection.release();
 		} catch (err) {
@@ -31,7 +31,7 @@ export class ordersProductsManage {
 
 		try {
 			const sql =
-				'INSERT INTO orders_products (order_id, product_id, quantity) VALUES($1, $2, $3) RETURNING *';
+				"INSERT INTO orders_products (order_id, product_id, quantity) VALUES($1, $2, $3) RETURNING *";
 			const connection = await dbconn.connect();
 			const result = await connection.query(sql, [order_id, product_id, quantity]);
 			connection.release();
@@ -53,7 +53,7 @@ export class ordersProductsManage {
 	}> {
 		try {
 			const sql =
-				'SELECT order_id, order_status, product_id, product_name, product_price, quantity FROM orders_products INNER JOIN orders ON orders_products.order_id = orders.id INNER JOIN products ON orders_products.product_id = products.id WHERE order_id=($1)';
+				"SELECT order_id, order_status, product_id, product_name, product_price, quantity FROM orders_products INNER JOIN orders ON orders_products.order_id = orders.id INNER JOIN products ON orders_products.product_id = products.id WHERE order_id=($1)";
 			const connection = await dbconn.connect();
 			const result = await connection.query(sql, [id]);
 			connection.release();
@@ -67,7 +67,7 @@ export class ordersProductsManage {
 		try {
 			const connection = await dbconn.connect();
 			const sql =
-				'DELETE FROM orders_products WHERE order_id = ($1) AND product_id = ($2)';
+				"DELETE FROM orders_products WHERE order_id = ($1) AND product_id = ($2)";
 			const result = await connection.query(sql, [oid, pid]);
 			connection.release();
 			return result.rows[0];

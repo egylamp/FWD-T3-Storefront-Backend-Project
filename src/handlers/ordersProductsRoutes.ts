@@ -1,7 +1,7 @@
-import { Application, Request, Response } from 'express';
-import { OrderProduct, ordersProductsManage } from '../services/orderProducts';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import { Application, Request, Response } from "express";
+import { OrderProduct, ordersProductsManage } from "../services/orderProducts";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 dotenv.config();
 
 const OPManage = new ordersProductsManage();
@@ -9,11 +9,11 @@ const OPManage = new ordersProductsManage();
 const show = async (req: Request, res: Response) => {
 	try {
 		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
+		const token = authorizedHeader.split(" ")[1];
 		jwt.verify(token, process.env.TOKEN_SECRET);
 	} catch (err) {
 		res.status(401);
-		res.json('Access denied, invalid token');
+		res.json("Access denied, invalid token");
 		return;
 	}
 	try {
@@ -28,17 +28,17 @@ const show = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
 	try {
 		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
+		const token = authorizedHeader.split(" ")[1];
 		jwt.verify(token, process.env.TOKEN_SECRET);
 	} catch (err) {
 		res.status(401);
-		res.json('Access denied, invalid token');
+		res.json("Access denied, invalid token");
 		return;
 	}
 
 	try {
 		const newProduct = await OPManage.addProduct(
-			req.body.order_id,
+			req.params.id,
 			req.body.product_id,
 			req.body.quantity
 		);
@@ -52,11 +52,11 @@ const create = async (req: Request, res: Response) => {
 const destroy = async (req: Request, res: Response) => {
 	try {
 		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
+		const token = authorizedHeader.split(" ")[1];
 		jwt.verify(token, process.env.TOKEN_SECRET);
 	} catch (err) {
 		res.status(401);
-		res.json('Access denied, invalid token');
+		res.json("Access denied, invalid token");
 		return;
 	}
 	try {
@@ -69,9 +69,9 @@ const destroy = async (req: Request, res: Response) => {
 };
 
 const ordersProductsRoutes = (app: Application) => {
-	app.get('/orders/:id/products', show);
-	app.post('/orders/:id/product', create);
-	app.delete('/orders/:oid/product/:pid', destroy);
+	app.get("/orders/:id/products", show);
+	app.post("/orders/:id/product", create);
+	app.delete("/orders/:oid/product/:pid", destroy);
 };
 
 export default ordersProductsRoutes;

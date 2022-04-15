@@ -1,7 +1,7 @@
-import { Application, Request, Response } from 'express';
-import { Product, productsManage } from '../models/productsModel';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import { Application, Request, Response } from "express";
+import { Product, productsManage } from "../models/productsModel";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 dotenv.config();
 
 const pManage = new productsManage();
@@ -39,19 +39,19 @@ const show = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
 	try {
 		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
+		const token = authorizedHeader.split(" ")[1];
 		jwt.verify(token, process.env.TOKEN_SECRET);
 	} catch (err) {
 		res.status(401);
-		res.json('Access denied, invalid token');
+		res.json("Access denied, invalid token");
 		return;
 	}
 
 	try {
 		const product: Product = {
-			name: req.body.name,
-			price: req.body.price,
-			category: req.body.category,
+			product_name: req.body.product_name,
+			product_price: req.body.product_price,
+			product_category: req.body.product_category,
 		};
 
 		const newProduct = await pManage.createProduct(product);
@@ -65,11 +65,11 @@ const create = async (req: Request, res: Response) => {
 const destroy = async (req: Request, res: Response) => {
 	try {
 		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
+		const token = authorizedHeader.split(" ")[1];
 		jwt.verify(token, process.env.TOKEN_SECRET);
 	} catch (err) {
 		res.status(401);
-		res.json('Access denied, invalid token');
+		res.json("Access denied, invalid token");
 		return;
 	}
 	try {
@@ -82,11 +82,11 @@ const destroy = async (req: Request, res: Response) => {
 };
 
 const productsRoutes = (app: Application) => {
-	app.get('/products', index);
-	app.get('/products/:id', show);
+	app.get("/products", index);
+	app.get("/products/:id", show);
 	//app.get('/products/category/:category', byCategoty);
-	app.post('/products', create);
-	app.delete('/products/:id', destroy);
+	app.post("/products", create);
+	app.delete("/products/:id", destroy);
 };
 
 export default productsRoutes;

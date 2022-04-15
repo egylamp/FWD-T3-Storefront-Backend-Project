@@ -1,24 +1,29 @@
-import { Application, Request, Response } from 'express';
-import { Order, ordersManage } from '../models/ordersModel';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import { Application, Request, Response } from "express";
+import { Order, ordersManage } from "../models/ordersModel";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 dotenv.config();
 
 const oManage = new ordersManage();
 
 const index = async (_req: Request, res: Response) => {
-	const orders = await oManage.indexOrders();
-	res.json(orders);
+	try{
+		const orders = await oManage.indexOrders();
+		res.json(orders);
+	} catch (err) {
+		res.status(400);
+		res.json(`${err}`);
+	}
 };
 
 const show = async (req: Request, res: Response) => {
 	try {
 		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
+		const token = authorizedHeader.split(" ")[1];
 		jwt.verify(token, process.env.TOKEN_SECRET);
 	} catch (err) {
 		res.status(401);
-		res.json('Access denied, invalid token');
+		res.json("Access denied, invalid token");
 		return;
 	}
 	try {
@@ -33,11 +38,11 @@ const show = async (req: Request, res: Response) => {
 const complete = async (req: Request, res: Response) => {
 	try {
 		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
+		const token = authorizedHeader.split(" ")[1];
 		jwt.verify(token, process.env.TOKEN_SECRET);
 	} catch (err) {
 		res.status(401);
-		res.json('Access denied, invalid token');
+		res.json("Access denied, invalid token");
 		return;
 	}
 	try {
@@ -52,18 +57,18 @@ const complete = async (req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
 	try {
 		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
+		const token = authorizedHeader.split(" ")[1];
 		jwt.verify(token, process.env.TOKEN_SECRET);
 	} catch (err) {
 		res.status(401);
-		res.json('Access denied, invalid token');
+		res.json("Access denied, invalid token");
 		return;
 	}
 
 	try {
 		const order: Order = {
 			user_id: req.body.user_id,
-			status: 'active',
+			order_status: 'active'
 		};
 		const newProduct = await oManage.createOrder(order);
 		res.json(newProduct);
@@ -76,11 +81,11 @@ const create = async (req: Request, res: Response) => {
 const destroy = async (req: Request, res: Response) => {
 	try {
 		const authorizedHeader = req.headers.authorization;
-		const token = authorizedHeader.split(' ')[1];
+		const token = authorizedHeader.split(" ")[1];
 		jwt.verify(token, process.env.TOKEN_SECRET);
 	} catch (err) {
 		res.status(401);
-		res.json('Access denied, invalid token');
+		res.json("Access denied, invalid token");
 		return;
 	}
 	try {
@@ -93,11 +98,11 @@ const destroy = async (req: Request, res: Response) => {
 };
 
 const ordersRoutes = (app: Application) => {
-	app.get('/orders', index);
-	app.get('/orders/:uid', show);
-	app.get('/orders/:uid/completed', complete);
-	app.post('/orders', create);
-	app.delete('/orders/:id', destroy);
+	app.get("/orders", index);
+	app.get("/orders/:uid", show);
+	app.get("/orders/:uid/completed", complete);
+	app.post("/orders", create);
+	app.delete("/orders/:id", destroy);
 };
 
 export default ordersRoutes;
