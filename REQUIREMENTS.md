@@ -31,16 +31,13 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Product
 
-Table: products (id: serial primary key, product_name:varchar, product_price:integer, product_category:varchar)
-___________________________________________________
-| id | username | password | firstname | lastname |
-___________________________________________________
+> Table: products (id: serial primary key, product_name:varchar, product_price:integer, product_category:varchar)
 
 #### User
 
-Table: users (id: serial primary key, username:varchar, password:varchar, firstname:varchar, lastname:varchar)
+> Table: users (id: serial primary key, username:varchar, password:varchar, firstname:varchar, lastname:varchar)
 
 #### Orders
 
-Table: orders (id: serial primary key, order_status:varchar, user_id:integer[foreign key to users table])
-Table: orders_products (id: serial primary key, quantity:integer, order_id:integer[foreign key to orders table], product_id:integer[foreign key to products table])
+> Table: orders (id: serial primary key, order_status:varchar, user_id:integer[foreign key to users table])
+> Table: orders_products (id: serial primary key, quantity:integer, order_id:integer[foreign key to orders table], product_id:integer[foreign key to products table])
