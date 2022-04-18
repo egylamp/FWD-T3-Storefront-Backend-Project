@@ -40,4 +40,5 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Orders
 
 > Table: orders (id: serial primary key, order_status:varchar, user_id:integer[foreign key to users table])
+
 > Table: orders_products (id: serial primary key, quantity:integer, order_id:integer[foreign key to orders table], product_id:integer[foreign key to products table])
