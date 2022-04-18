@@ -17,7 +17,7 @@ Your application must make use of the following libraries:
 
 ## Steps to setup the project
 
-### 1. Use "yarn" command to install all required node modules
+### 1. Use `yarn` command to install all required node modules
 
 ### 2. Create two databases on prostgres one for developmet and another for testing
 
@@ -25,6 +25,7 @@ Make sure that your dabase server is running on default port 5432
 
 ### 3. Create .env and add the below variables to it according to the databse server configration
 
+```
 PG_HOST=127.0.0.1
 PG_USER=[database user]
 PG_PWD=[database user password]
@@ -35,14 +36,15 @@ ENV=dev
 BCRYPT_PASSWORD=[bcrypt secret password]
 SALT_ROUNDS=10
 TOKEN_SECRET=[token secret word]
+```
 
 ### 4. Run and test terminal commands
 
-For creating database tables use: ~ db-migrate up
+For creating database tables use: `~ db-migrate up`
 
-For running the server and call endpoints use: ~ yarn watch
+For running the server and call endpoints use: `~ yarn watch`
 
-For unit testing use: ~ yarn test
+For unit testing use: `~ yarn test`
 
 ### 5. Plan to Meet Requirements
 
