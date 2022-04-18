@@ -32,9 +32,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Product
 
 Table: products (id: serial primary key, product_name:varchar, product_price:integer, product_category:varchar)
- ---- ---------- ---------- ----------- ---------- 
+ ____ __________ __________ ___________ __________
 | id | username | password | firstname | lastname |
- ---- ---------- ---------- ----------- ----------
 
 #### User
 
